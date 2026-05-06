@@ -172,17 +172,28 @@ class Adil_Admin_UI {
 
         if ( isset( $_POST['adil_settings_submit'] ) ) {
             check_admin_referer( 'adil_settings_save' );
-            foreach ( [
-                'adil_frontend_url','adil_contact_email',
-                'adil_site_title','adil_site_tagline','adil_site_bio',
-                'adil_site_location','adil_site_email','adil_site_linkedin',
-                'adil_site_availability','adil_hero_stat_roas','adil_hero_stat_roas_sub',
-                'adil_hero_stat_ventures','adil_hero_stat_ventures_sub',
-                'adil_cta_primary_label','adil_cta_primary_href',
-                'adil_cta_secondary_label','adil_cta_secondary_href',
-            ] as $key ) {
+
+            $fields_to_save = [
+                'adil_frontend_url', 'adil_contact_email',
+                'adil_site_title', 'adil_site_tagline', 'adil_site_bio', 'adil_site_location', 'adil_site_email', 'adil_site_linkedin', 'adil_site_availability',
+                'adil_hero_stat_roas', 'adil_hero_stat_roas_sub', 'adil_hero_stat_ventures', 'adil_hero_stat_ventures_sub',
+                'adil_about_label', 'adil_about_title', 'adil_about_accent',
+                'adil_stat_1_value', 'adil_stat_1_label', 'adil_stat_2_value', 'adil_stat_2_label', 'adil_stat_3_value', 'adil_stat_3_label',
+                'adil_services_label', 'adil_services_title', 'adil_services_accent',
+                'adil_projects_label', 'adil_projects_title', 'adil_projects_accent',
+                'adil_resume_label', 'adil_resume_title', 'adil_resume_accent',
+                'adil_contact_label', 'adil_contact_title', 'adil_contact_accent',
+                'adil_testimonials_label', 'adil_testimonials_title', 'adil_testimonials_accent',
+                'adil_cta_primary_label', 'adil_cta_primary_href', 'adil_cta_secondary_label', 'adil_cta_secondary_href',
+            ];
+
+            foreach ( $fields_to_save as $key ) {
                 if ( isset( $_POST[ $key ] ) ) {
-                    update_option( $key, sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) );
+                    if ( $key === 'adil_site_bio' ) {
+                        update_option( $key, wp_kses_post( wp_unslash( $_POST[ $key ] ) ) );
+                    } else {
+                        update_option( $key, sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) );
+                    }
                 }
             }
             add_settings_error( 'adil_messages', 'adil_saved', 'Settings saved.', 'updated' );
@@ -243,6 +254,15 @@ class Adil_Admin_UI {
                                     'adil_site_tagline'            => 'Tagline / Focus',
                                     'adil_site_bio'                => 'Bio / Hero Description (HTML allowed)',
                                     'adil_site_location'           => 'Location',
+                                    'adil_site_email'              => 'Email Address',
+                                    'adil_site_linkedin'           => 'LinkedIn URL',
+                                    'adil_site_availability'       => 'Availability Status',
+                                ],
+                                'Top Hero Stats' => [
+                                    'adil_hero_stat_roas'          => 'Stat 1 Value (e.g. 6.5×)',
+                                    'adil_hero_stat_roas_sub'      => 'Stat 1 Subtitle',
+                                    'adil_hero_stat_ventures'      => 'Stat 2 Value (e.g. 3)',
+                                    'adil_hero_stat_ventures_sub'  => 'Stat 2 Subtitle',
                                 ],
                                 'Section: About' => [
                                     'adil_about_label'             => 'Top Label',
