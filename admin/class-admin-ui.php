@@ -165,8 +165,8 @@ class Adil_Admin_UI {
         if ( ! current_user_can( 'manage_options' ) ) return;
 
         // Regenerate token action
-        if ( isset( $_POST['adil_regen_token_btn'] ) && check_admin_referer( 'adil_settings_save' ) ) {
-            update_option( 'adil_revalidate_token', bin2hex( random_bytes( 24 ) ) );
+        if ( isset( $_POST['adil_regen_token'] ) && check_admin_referer( 'adil_settings_save' ) ) {
+            update_option( 'adil_revalidate_token', wp_generate_password( 48, false ) );
             add_settings_error( 'adil_messages', 'adil_token_regen', 'Revalidation token regenerated. Update your Next.js .env.local.', 'updated' );
         }
 
@@ -234,7 +234,7 @@ class Adil_Admin_UI {
                             <code><?php echo esc_html( $token ?: '(none yet)' ); ?></code>
                             <div class="adil-token-actions">
                                 <button class="adil-btn-copy button button-secondary" data-copy="<?php echo esc_attr( $token ); ?>">Copy Token</button>
-                                <button type="submit" name="adil_regen_token_btn" value="1" class="button button-secondary">Regenerate</button>
+                                <button type="submit" name="adil_regen_token" value="1" class="button button-secondary" onclick="return confirm('Regenerate token? You will need to update your Next.js environment variables if you do this.');">Regenerate</button>
                             </div>
                         </div>
                     </div>
