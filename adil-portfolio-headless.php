@@ -61,7 +61,7 @@ function adil_activate(): void {
 
     // Generate revalidation token if not already set
     if ( ! get_option( 'adil_revalidate_token' ) ) {
-        update_option( 'adil_revalidate_token', wp_generate_password( 48, false ) );
+        update_option( 'adil_revalidate_token', bin2hex( random_bytes( 24 ) ) );
     }
 }
 
