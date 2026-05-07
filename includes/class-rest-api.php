@@ -42,7 +42,7 @@ class Adil_REST_API {
         register_rest_route( $ns, '/experience',         [ 'methods' => 'GET',  'callback' => [ __CLASS__, 'get_experience' ],  'permission_callback' => '__return_true' ] );
         register_rest_route( $ns, '/skills',             [ 'methods' => 'GET',  'callback' => [ __CLASS__, 'get_skills' ],      'permission_callback' => '__return_true' ] );
         register_rest_route( $ns, '/testimonials',       [ 'methods' => 'GET',  'callback' => [ __CLASS__, 'get_testimonials' ],'permission_callback' => '__return_true' ] );
-        register_rest_route( $ns, '/settings',           [ 'methods' => 'GET',  'callback' => [ __CLASS__, 'get_settings' ],    'permission_callback' => '__return_true' ] );
+
 
         // Mutations
         register_rest_route( $ns, '/contact',            [ 'methods' => 'POST', 'callback' => [ __CLASS__, 'post_contact' ],    'permission_callback' => '__return_true' ] );
@@ -53,7 +53,6 @@ class Adil_REST_API {
 
     public static function get_portfolio( WP_REST_Request $req ): WP_REST_Response {
         return new WP_REST_Response( [
-            'meta'         => Adil_Settings::get_all(),
             'projects'     => self::fetch_projects(),
             'services'     => self::fetch_services(),
             'experience'   => self::fetch_experience(),
@@ -133,11 +132,7 @@ class Adil_REST_API {
         return new WP_REST_Response( self::fetch_testimonials(), 200 );
     }
 
-    // ── GET /settings ─────────────────────────────────────────────────────────
 
-    public static function get_settings( WP_REST_Request $req ): WP_REST_Response {
-        return new WP_REST_Response( Adil_Settings::get_all(), 200 );
-    }
 
     // ── POST /contact ─────────────────────────────────────────────────────────
 

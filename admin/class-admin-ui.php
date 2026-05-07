@@ -175,16 +175,6 @@ class Adil_Admin_UI {
 
             $fields_to_save = [
                 'adil_frontend_url', 'adil_contact_email',
-                'adil_site_title', 'adil_site_tagline', 'adil_site_bio', 'adil_site_location', 'adil_site_email', 'adil_site_linkedin', 'adil_site_availability',
-                'adil_hero_stat_roas', 'adil_hero_stat_roas_sub', 'adil_hero_stat_ventures', 'adil_hero_stat_ventures_sub',
-                'adil_about_label', 'adil_about_title', 'adil_about_accent',
-                'adil_stat_1_value', 'adil_stat_1_label', 'adil_stat_2_value', 'adil_stat_2_label', 'adil_stat_3_value', 'adil_stat_3_label',
-                'adil_services_label', 'adil_services_title', 'adil_services_accent',
-                'adil_projects_label', 'adil_projects_title', 'adil_projects_accent',
-                'adil_resume_label', 'adil_resume_title', 'adil_resume_accent',
-                'adil_contact_label', 'adil_contact_title', 'adil_contact_accent',
-                'adil_testimonials_label', 'adil_testimonials_title', 'adil_testimonials_accent',
-                'adil_cta_primary_label', 'adil_cta_primary_href', 'adil_cta_secondary_label', 'adil_cta_secondary_href',
             ];
 
             foreach ( $fields_to_save as $key ) {
@@ -239,86 +229,7 @@ class Adil_Admin_UI {
                         </div>
                     </div>
 
-                    <!-- Site Meta -->
-                    <div class="adil-card">
-                        <h2 class="adil-card-title">🧑‍💻 Site Meta & Sections</h2>
-                        <table class="form-table">
-                            <?php
-                            $meta_sections = [
-                                'Identity' => [
-                                    'adil_site_title'              => 'Display Name',
-                                    'adil_site_tagline'            => 'Tagline / Focus',
-                                    'adil_site_bio'                => 'Bio / Hero Description (HTML allowed)',
-                                    'adil_site_location'           => 'Location',
-                                    'adil_site_email'              => 'Email Address',
-                                    'adil_site_linkedin'           => 'LinkedIn URL',
-                                    'adil_site_availability'       => 'Availability Status',
-                                ],
-                                'Top Hero Stats' => [
-                                    'adil_hero_stat_roas'          => 'Stat 1 Value (e.g. 6.5×)',
-                                    'adil_hero_stat_roas_sub'      => 'Stat 1 Subtitle',
-                                    'adil_hero_stat_ventures'      => 'Stat 2 Value (e.g. 3)',
-                                    'adil_hero_stat_ventures_sub'  => 'Stat 2 Subtitle',
-                                ],
-                                'Section: About' => [
-                                    'adil_about_label'             => 'Top Label',
-                                    'adil_about_title'             => 'Large Title',
-                                    'adil_about_accent'            => 'Accent Title (Blue)',
-                                ],
-                                'Bottom Hero Stats' => [
-                                    'adil_stat_1_value'            => 'Stat 1 Value (e.g. 2+)',
-                                    'adil_stat_1_label'            => 'Stat 1 Label',
-                                    'adil_stat_2_value'            => 'Stat 2 Value (e.g. 10+)',
-                                    'adil_stat_2_label'            => 'Stat 2 Label',
-                                    'adil_stat_3_value'            => 'Stat 3 Value (e.g. 3)',
-                                    'adil_stat_3_label'            => 'Stat 3 Label',
-                                ],
-                                'Section: Services' => [
-                                    'adil_services_label'          => 'Top Label',
-                                    'adil_services_title'          => 'Large Title',
-                                    'adil_services_accent'         => 'Accent Title (Blue)',
-                                ],
-                                'Section: Work' => [
-                                    'adil_projects_label'          => 'Top Label',
-                                    'adil_projects_title'          => 'Large Title',
-                                    'adil_projects_accent'         => 'Accent Title (Blue)',
-                                ],
-                                'Section: Resume' => [
-                                    'adil_resume_label'            => 'Top Label',
-                                    'adil_resume_title'            => 'Large Title',
-                                    'adil_resume_accent'           => 'Accent Title (Blue)',
-                                ],
-                                'Section: Contact' => [
-                                    'adil_contact_label'           => 'Top Label',
-                                    'adil_contact_title'           => 'Large Title',
-                                    'adil_contact_accent'          => 'Accent Title (Blue)',
-                                ],
-                                'Section: Testimonials' => [
-                                    'adil_testimonials_label'      => 'Top Label',
-                                    'adil_testimonials_title'      => 'Large Title',
-                                    'adil_testimonials_accent'     => 'Accent Title (Blue)',
-                                ],
-                                'Call to Action' => [
-                                    'adil_cta_primary_label'       => 'Primary Label',
-                                    'adil_cta_primary_href'        => 'Primary Link',
-                                    'adil_cta_secondary_label'     => 'Secondary Label',
-                                    'adil_cta_secondary_href'      => 'Secondary Link',
-                                ]
-                            ];
-                            foreach ( $meta_sections as $section_name => $fields ) :
-                            ?>
-                                <tr><th colspan="2" style="padding-top:20px; border-bottom:1px solid #eee;"><strong><?php echo esc_html($section_name); ?></strong></th></tr>
-                                <?php foreach ( $fields as $key => $label ) : 
-                                    $val = get_option( $key, '' );
-                                ?>
-                                <tr>
-                                    <th><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $label ); ?></label></th>
-                                    <td><input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $val ); ?>" class="regular-text" placeholder="Enter <?php echo strtolower($label); ?>..."></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            <?php endforeach; ?>
-                        </table>
-                    </div>
+
 
                 </div>
 
