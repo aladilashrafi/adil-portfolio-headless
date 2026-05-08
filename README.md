@@ -4,7 +4,7 @@
 
 **Plugin Name:** Adil Portfolio — Headless CMS  
 **API Namespace:** `adil/v1`  
-**API Base URL:** `https://api.adilashrafi.com/wp-json/adil/v1`  
+**API Base URL:** `https://your-site.com/wp-json/adil/v1`  
 **Requires WordPress:** 6.0+  
 **Requires PHP:** 8.0+  
 **License:** GPL-2.0-or-later
