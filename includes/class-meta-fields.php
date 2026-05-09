@@ -53,9 +53,10 @@ class Adil_Meta_Fields {
 
         // ── Experience fields ─────────────────────────────────────────────────
         $exp_fields = [
-            'adil_period'  => 'string',
-            'adil_company' => 'string',
-            'adil_type'    => 'string',  // 'work' | 'education'
+            'adil_period'      => 'string',
+            'adil_company'     => 'string',
+            'adil_company_url' => 'string',
+            'adil_type'        => 'string',  // 'work' | 'education'
         ];
         foreach ( $exp_fields as $key => $type ) {
             register_post_meta( 'adil_experience', $key, [
@@ -157,9 +158,10 @@ class Adil_Meta_Fields {
     public static function render_experience_box( WP_Post $post ): void {
         wp_nonce_field( 'adil_save_meta', 'adil_nonce' );
         $fields = [
-            'adil_period'  => [ 'label' => 'Period', 'type' => 'text', 'placeholder' => 'Mar 2025 – Present' ],
-            'adil_company' => [ 'label' => 'Company / Institution', 'type' => 'text', 'placeholder' => 'Mediusware Limited' ],
-            'adil_type'    => [ 'label' => 'Type', 'type' => 'select', 'options' => [ 'work' => 'Work', 'education' => 'Education' ] ],
+            'adil_period'      => [ 'label' => 'Period', 'type' => 'text', 'placeholder' => 'Mar 2025 – Present' ],
+            'adil_company'     => [ 'label' => 'Company / Institution', 'type' => 'text', 'placeholder' => 'Mediusware Limited' ],
+            'adil_company_url' => [ 'label' => 'Company URL', 'type' => 'url', 'placeholder' => 'https://...' ],
+            'adil_type'        => [ 'label' => 'Type', 'type' => 'select', 'options' => [ 'work' => 'Work', 'education' => 'Education' ] ],
         ];
         self::render_fields( $post, $fields );
         echo '<p class="description">Description goes in the main editor / content area. Use <strong>Menu Order</strong> (Page Attributes) to control sort order.</p>';
@@ -231,7 +233,7 @@ class Adil_Meta_Fields {
             // Service
             'adil_num', 'adil_icon',
             // Experience
-            'adil_period', 'adil_company', 'adil_type',
+            'adil_period', 'adil_company', 'adil_company_url', 'adil_type',
             // Skill
             'adil_percentage', 'adil_category',
             // Testimonial

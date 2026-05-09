@@ -156,7 +156,7 @@ class Adil_Contact_Handler {
               . "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
               . "In the meantime, you can:\n"
               . "· View my work:    https://adilashrafi.com\n"
-              . "· Connect on LinkedIn: https://linkedin.com/in/aladilashrafisaikat\n\n"
+              . "· Connect on LinkedIn: https://www.linkedin.com/in/al-adil-ashrafi/\n\n"
               . "Best,\n"
               . "Al Adil Ashrafi\n"
               . "The Marketing Alchemist\n"

@@ -337,6 +337,7 @@ class Adil_REST_API {
                 'period'      => get_post_meta( $post->ID, 'adil_period',  true ),
                 'role'        => $post->post_title,
                 'company'     => get_post_meta( $post->ID, 'adil_company', true ),
+                'company_url' => get_post_meta( $post->ID, 'adil_company_url', true ),
                 'description' => wp_strip_all_tags( $post->post_content ),
                 'type'        => get_post_meta( $post->ID, 'adil_type',    true ) ?: 'work',
                 'order'       => (int) $post->menu_order,

@@ -22,7 +22,7 @@ class Adil_Settings {
         register_setting( 'adil_settings_group', 'adil_site_bio',                  [ 'sanitize_callback' => 'wp_kses_post',        'default' => '' ] );
         register_setting( 'adil_settings_group', 'adil_site_location',             [ 'sanitize_callback' => 'sanitize_text_field', 'default' => 'Mohammadpur, Dhaka, Bangladesh' ] );
         register_setting( 'adil_settings_group', 'adil_site_email',                [ 'sanitize_callback' => 'sanitize_email',      'default' => 'hello@adilashrafi.com' ] );
-        register_setting( 'adil_settings_group', 'adil_site_linkedin',             [ 'sanitize_callback' => 'esc_url_raw',         'default' => 'https://linkedin.com/in/aladilashrafisaikat' ] );
+        register_setting( 'adil_settings_group', 'adil_site_linkedin',             [ 'sanitize_callback' => 'esc_url_raw',         'default' => 'https://www.linkedin.com/in/al-adil-ashrafi/' ] );
         register_setting( 'adil_settings_group', 'adil_site_availability',         [ 'sanitize_callback' => 'sanitize_text_field', 'default' => 'Available for Freelance' ] );
         
         // Hero Stats
@@ -80,7 +80,7 @@ class Adil_Settings {
             'bio'                     => get_option( 'adil_site_bio',                '' ),
             'location'                => get_option( 'adil_site_location',           'Mohammadpur, Dhaka, Bangladesh' ),
             'email'                   => get_option( 'adil_site_email',              'hello@adilashrafi.com' ),
-            'linkedin'                => get_option( 'adil_site_linkedin',           'https://linkedin.com/in/aladilashrafisaikat' ),
+            'linkedin'                => get_option( 'adil_site_linkedin',           'https://www.linkedin.com/in/al-adil-ashrafi/' ),
             'availability'            => get_option( 'adil_site_availability',       'Available for Freelance' ),
             
             // Stats
