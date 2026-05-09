@@ -27,6 +27,7 @@ class Adil_Meta_Fields {
             'adil_tech_tags'   => 'string',   // comma-separated
             'adil_role'        => 'string',   // e.g. 'Lead Strategist'
             'adil_timeline'    => 'string',   // e.g. '2023 - Present'
+            'adil_key_results' => 'string',   // newline-separated
         ];
         foreach ( $project_fields as $key => $type ) {
             register_post_meta( 'adil_project', $key, [
@@ -138,6 +139,7 @@ class Adil_Meta_Fields {
             'adil_tech_tags' => [ 'label' => 'Tech Tags (comma-separated)', 'type' => 'text', 'placeholder' => 'WooCommerce, PHP, WordPress' ],
             'adil_role'      => [ 'label' => 'Your Role',              'type' => 'text',     'placeholder' => 'Lead Strategist' ],
             'adil_timeline'  => [ 'label' => 'Timeline',               'type' => 'text',     'placeholder' => '2023 - Present' ],
+            'adil_key_results' => [ 'label' => 'Key Results',           'type' => 'textarea', 'placeholder' => 'One result per line' ],
         ];
         self::render_fields( $post, $fields );
 
@@ -202,6 +204,10 @@ class Adil_Meta_Fields {
                     echo '<option value="' . esc_attr( $val ) . '"' . selected( $value, $val, false ) . '>' . esc_html( $label ) . '</option>';
                 }
                 echo '</select>';
+            } elseif ( $cfg['type'] === 'textarea' ) {
+                echo '<textarea name="' . esc_attr( $key ) . '" id="' . esc_attr( $key ) . '"'
+                    . ' placeholder="' . esc_attr( $cfg['placeholder'] ?? '' ) . '"'
+                    . ' class="large-text" rows="4" style="width:100%;">' . esc_textarea( $value ) . '</textarea>';
             } else {
                 echo '<input type="' . esc_attr( $cfg['type'] ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $key ) . '"'
                     . ' value="' . esc_attr( $value ) . '"'
@@ -229,7 +235,7 @@ class Adil_Meta_Fields {
 
         $all_fields = [
             // Project
-            'adil_badge', 'adil_url', 'adil_status', 'adil_tech_tags', 'adil_role', 'adil_timeline',
+            'adil_badge', 'adil_url', 'adil_status', 'adil_tech_tags', 'adil_role', 'adil_timeline', 'adil_key_results',
             // Service
             'adil_num', 'adil_icon',
             // Experience
@@ -242,9 +248,13 @@ class Adil_Meta_Fields {
 
         foreach ( $all_fields as $key ) {
             if ( isset( $_POST[ $key ] ) ) {
-                $value = $key === 'adil_percentage'
-                    ? absint( $_POST[ $key ] )
-                    : sanitize_text_field( $_POST[ $key ] );
+                if ( $key === 'adil_percentage' ) {
+                    $value = absint( $_POST[ $key ] );
+                } elseif ( $key === 'adil_key_results' ) {
+                    $value = sanitize_textarea_field( $_POST[ $key ] );
+                } else {
+                    $value = sanitize_text_field( $_POST[ $key ] );
+                }
                 update_post_meta( $post_id, $key, $value );
             }
         }

@@ -281,6 +281,7 @@ class Adil_REST_API {
             'order'       => (int) $post->menu_order,
             'role'        => get_post_meta( $post->ID, 'adil_role',     true ),
             'timeline'    => get_post_meta( $post->ID, 'adil_timeline', true ),
+            'key_results' => array_filter( array_map( 'trim', explode( "\n", get_post_meta( $post->ID, 'adil_key_results', true ) ) ) ),
             'categories'  => self::fetch_categories( $post->ID ),
         ];
     }

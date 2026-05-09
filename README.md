@@ -174,6 +174,7 @@ All meta fields are registered with `show_in_rest: true` (except contact log fie
 | `adil_tech_tags` | string | Comma-separated technology tags | `WooCommerce, PHP, WordPress` |
 | `adil_role` | string | Your role on the project | `Lead Strategist` |
 | `adil_timeline` | string | Project duration | `2023 - Present` |
+| `adil_key_results` | string | Newline-separated results (converted to array in API) | `15% Revenue boost...` |
 
 > **Content field:** The main WordPress editor content is used as the project's long-form case study HTML (passed through `apply_filters('the_content', ...)` in the API response).
 
@@ -286,6 +287,7 @@ Returns all published projects, ordered by `menu_order ASC`.
   "order":       1,
   "role":        "Founder & Lead Developer",
   "timeline":    "2023 - Present",
+  "key_results": ["15% Increase in conversion", "2s Faster load time"],
   "categories":  [{ "id": 5, "name": "SaaS", "slug": "saas" }]
 }
 ```
