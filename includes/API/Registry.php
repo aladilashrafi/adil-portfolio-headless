@@ -13,6 +13,8 @@ class Registry {
             return;
         }
 
+        self::init_content_filters();
+
         $ns = HPCMS_API_NS;
 
         Projects::register_routes( $ns );
@@ -22,6 +24,19 @@ class Registry {
         Skills::register_routes( $ns );
         Testimonials::register_routes( $ns );
         Profile::register_routes( $ns );
+    }
+
+    private static function init_content_filters(): void {
+        $filters = [
+            'wptexturize',
+            'convert_chars',
+            'wpautop',
+            'shortcode_unautop',
+            'do_shortcode',
+        ];
+        foreach ( $filters as $filter ) {
+            add_filter( 'hpcms_content', $filter );
+        }
     }
 
     public static function check_public_read_permission(): bool {

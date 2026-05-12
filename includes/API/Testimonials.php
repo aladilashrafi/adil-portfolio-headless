@@ -32,7 +32,7 @@ class Testimonials {
         return [
             'id'             => $post->ID,
             'slug'           => $post->post_name,
-            'quote'          => wp_kses_post( apply_filters( 'the_content', $post->post_content ) ),
+            'quote'          => wp_kses_post( apply_filters( 'hpcms_content', $post->post_content ) ),
             'clientName'     => esc_html( get_post_meta( $post->ID, '_hpcms_client_name', true ) ),
             'clientPosition' => esc_html( get_post_meta( $post->ID, '_hpcms_client_position', true ) ),
             'company'        => esc_html( get_post_meta( $post->ID, '_hpcms_company', true ) ),

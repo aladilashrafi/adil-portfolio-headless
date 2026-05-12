@@ -61,7 +61,7 @@ class Experience {
             'endDate'         => esc_html( get_post_meta( $post->ID, '_hpcms_end_date', true ) ),
             'isCurrent'       => (bool) get_post_meta( $post->ID, '_hpcms_current_position', true ),
             'location'        => esc_html( get_post_meta( $post->ID, '_hpcms_location', true ) ),
-            'description'     => wp_kses_post( apply_filters( 'the_content', $post->post_content ) ),
+            'description'     => wp_kses_post( apply_filters( 'hpcms_content', $post->post_content ) ),
             'order'           => (int) $post->menu_order,
         ];
     }

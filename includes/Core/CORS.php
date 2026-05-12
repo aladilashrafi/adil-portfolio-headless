@@ -28,7 +28,7 @@ class CORS {
             header( 'Access-Control-Allow-Headers: Authorization, X-WP-Nonce, Content-Type, X-Requested-With' );
         }
 
-        if ( 'OPTIONS' === $_SERVER['REQUEST_METHOD'] ) {
+        if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'OPTIONS' === $_SERVER['REQUEST_METHOD'] ) {
             exit;
         }
 

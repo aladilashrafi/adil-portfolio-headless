@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Headless Portfolio CMS
- * Plugin URI:  https://github.com/markimist/headless-portfolio-cms
+ * Plugin URI:  https://github.com/aladilashrafi/headless-portfolio-cms
  * Description: API-first headless portfolio CMS for WordPress. Powers modern frontends (Next.js, React, Astro, Nuxt, Gatsby) via a clean REST API.
  * Version:     1.0.0
  * Requires at least: 6.5
@@ -49,13 +49,6 @@ function hpcms_bootstrap(): void {
     HPCMS\Core\CORS::init();
     HPCMS\API\Registry::init();
     HPCMS\Admin\Menu::init();
-
-    // Load text domain
-    load_plugin_textdomain(
-        'headless-portfolio-cms',
-        false,
-        dirname( plugin_basename( __FILE__ ) ) . '/languages'
-    );
 }
 add_action( 'plugins_loaded', 'hpcms_bootstrap' );
 

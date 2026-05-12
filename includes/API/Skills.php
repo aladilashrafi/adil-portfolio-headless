@@ -37,6 +37,7 @@ class Skills {
         ];
 
         if ( $category ) {
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
             $args['tax_query'] = [
                 [ 'taxonomy' => 'hpcms_skill_category', 'field' => 'slug', 'terms' => sanitize_title( $category ) ],
             ];

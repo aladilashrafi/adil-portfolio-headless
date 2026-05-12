@@ -5,12 +5,14 @@ defined( 'ABSPATH' ) || exit;
 
 class Settings {
     public static function render(): void {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if ( isset( $_GET['settings-updated'] ) ) {
             add_settings_error( 'hpcms_messages', 'hpcms_message', __( 'Settings Saved', 'headless-portfolio-cms' ), 'updated' );
         }
         settings_errors( 'hpcms_messages' );
 
-        $active_tab = $_GET['tab'] ?? 'profile';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'profile';
         ?>
         <div class="wrap hpcms-admin-wrap">
             <header class="hpcms-admin-header">

@@ -21,8 +21,8 @@ $hpcms_options = [
     'hpcms_cache_duration', 'hpcms_api_token', 'hpcms_frontend_url',
 ];
 
-foreach ( $hpcms_options as $opt ) {
-    delete_option( $opt );
+foreach ( $hpcms_options as $hpcms_opt ) {
+    delete_option( $hpcms_opt );
 }
 
 // ── Delete all CPT posts and their meta ───────────────────────────────────────
@@ -35,16 +35,16 @@ $hpcms_post_types = [
     'hpcms_testimonial',
 ];
 
-foreach ( $hpcms_post_types as $type ) {
-    $posts = get_posts( [
-        'post_type'      => $type,
+foreach ( $hpcms_post_types as $hpcms_type ) {
+    $hpcms_posts = get_posts( [
+        'post_type'      => $hpcms_type,
         'post_status'    => 'any',
         'posts_per_page' => -1,
         'fields'         => 'ids',
     ] );
 
-    foreach ( $posts as $post_id ) {
-        wp_delete_post( $post_id, true ); // force delete (skip trash)
+    foreach ( $hpcms_posts as $hpcms_post_id ) {
+        wp_delete_post( $hpcms_post_id, true ); // force delete (skip trash)
     }
 }
 
@@ -56,11 +56,11 @@ $hpcms_taxonomies = [
     'hpcms_skill_category',
 ];
 
-foreach ( $hpcms_taxonomies as $tax ) {
-    $terms = get_terms( [ 'taxonomy' => $tax, 'hide_empty' => false ] );
-    if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
-        foreach ( $terms as $term ) {
-            wp_delete_term( $term->term_id, $tax );
+foreach ( $hpcms_taxonomies as $hpcms_tax ) {
+    $hpcms_terms = get_terms( [ 'taxonomy' => $hpcms_tax, 'hide_empty' => false ] );
+    if ( ! is_wp_error( $hpcms_terms ) && ! empty( $hpcms_terms ) ) {
+        foreach ( $hpcms_terms as $hpcms_term ) {
+            wp_delete_term( $hpcms_term->term_id, $hpcms_tax );
         }
     }
 }

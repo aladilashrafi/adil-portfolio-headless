@@ -1,6 +1,6 @@
 === Headless Portfolio CMS ===
 Contributors: aladilashrafi
-Tags: headless, portfolio, cms, nextjs, react, api, developer portfolio, astro, gatsby, rest api
+Tags: headless, portfolio, nextjs, api, cms
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 8.1
@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The ultimate API-first headless portfolio CMS for WordPress. Seamlessly power modern frontends like Next.js, React, Astro, Nuxt, and Gatsby via a lightning-fast REST API.
+API-first headless portfolio CMS for WordPress. Seamlessly power modern frontends like Next.js, React, and Astro via a lightning-fast REST API.
 
 == Description ==
 
@@ -53,13 +53,6 @@ Absolutely. The structure is flexible enough to handle solo developer portfolios
 
 = Are the API endpoints cached? =
 The plugin provides a configuration setting for API Cache Duration, which you can use in conjunction with your frontend caching strategies (like Next.js Incremental Static Regeneration - ISR) or server-level caching.
-
-== Screenshots ==
-
-1. The comprehensive Dashboard showing your portfolio statistics.
-2. The custom Projects editor with tailored meta fields for GitHub and Live URLs.
-3. The centralized Settings page for managing your global Profile and CORS.
-4. The built-in API Reference guide for easy frontend development.
 
 == Changelog ==
 

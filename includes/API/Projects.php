@@ -64,6 +64,7 @@ class Projects {
         }
 
         if ( $featured === '1' || $featured === 'true' ) {
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
             $args['meta_query'] = [
                 [ 'key' => '_hpcms_featured', 'value' => '1', 'compare' => '=' ],
             ];
@@ -81,6 +82,7 @@ class Projects {
         }
         if ( ! empty( $tax_query ) ) {
             $tax_query['relation']  = 'AND';
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
             $args['tax_query']      = $tax_query;
         }
 
@@ -126,7 +128,7 @@ class Projects {
             'title'         => esc_html( $post->post_title ),
             'slug'          => $post->post_name,
             'excerpt'       => esc_html( get_the_excerpt( $post ) ),
-            'content'       => wp_kses_post( apply_filters( 'the_content', $post->post_content ) ),
+            'content'       => wp_kses_post( apply_filters( 'hpcms_content', $post->post_content ) ),
             'featuredImage' => Helper::get_featured_image( $post->ID ),
             'client'        => esc_html( get_post_meta( $post->ID, '_hpcms_client_name', true ) ),
             'links'         => [
