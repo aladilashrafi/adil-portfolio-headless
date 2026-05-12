@@ -1,0 +1,717 @@
+# Headless Portfolio CMS
+
+## Updated Production Architecture Documentation
+
+---
+
+# Project Overview
+
+## Plugin Name
+
+**Headless Portfolio CMS**
+
+## Purpose
+
+A modern API-first portfolio CMS plugin for WordPress that allows developers, freelancers, agencies, and creators to manage structured portfolio data and expose it through clean REST APIs for modern frontend frameworks like:
+
+* Next.js
+* React
+* Astro
+* Nuxt
+* Gatsby
+
+---
+
+# Plugin Vision
+
+This plugin should function as:
+
+> A complete headless developer portfolio content platform powered by WordPress.
+
+Not merely:
+
+* a portfolio showcase plugin,
+* a theme addon,
+* or a frontend template system.
+
+---
+
+# CMS Architecture
+
+Your plugin currently includes these core entities:
+
+* Projects
+* Experience
+* Education
+* Resume
+* Skills
+* Testimonials
+
+These should become the foundation of the CMS architecture.
+
+---
+
+# Recommended Plugin Structure
+
+```txt id="2jlwmx"
+headless-portfolio-cms/
+│
+├── assets/
+├── admin/
+├── public/
+├── includes/
+├── templates/
+├── build/
+├── languages/
+├── vendor/
+│
+├── uninstall.php
+├── readme.txt
+├── license.txt
+├── composer.json
+├── package.json
+└── headless-portfolio-cms.php
+```
+
+---
+
+# Main Plugin Bootstrap File
+
+## headless-portfolio-cms.php
+
+Responsibilities:
+
+* plugin metadata
+* constants
+* autoloading
+* activation hooks
+* deactivation hooks
+* initialization
+
+---
+
+# Required Plugin Header
+
+```php id="06o7tb"
+/**
+ * Plugin Name: Headless Portfolio CMS
+ * Description: API-first headless portfolio CMS for WordPress.
+ * Version: 1.0.0
+ * Requires at least: 6.5
+ * Requires PHP: 8.1
+ * Author: Al Adil Ashrafi Saikat
+ * License: GPLv2 or later
+ * Text Domain: headless-portfolio-cms
+ */
+```
+
+---
+
+# Core Content Architecture
+
+---
+
+# 1. Projects
+
+## CPT Slug
+
+```txt id="z31o4u"
+hpcms_project
+```
+
+---
+
+# Purpose
+
+Stores:
+
+* portfolio projects
+* case studies
+* applications
+* websites
+* client work
+
+---
+
+# Recommended Meta Fields
+
+| Field            | Meta Key                 |
+| ---------------- | ------------------------ |
+| Client Name      | `_hpcms_client_name`     |
+| Project URL      | `_hpcms_project_url`     |
+| GitHub URL       | `_hpcms_github_url`      |
+| Completion Date  | `_hpcms_completion_date` |
+| Featured Project | `_hpcms_featured`        |
+| Tech Stack       | `_hpcms_tech_stack`      |
+| Gallery          | `_hpcms_gallery`         |
+| SEO Title        | `_hpcms_seo_title`       |
+| SEO Description  | `_hpcms_seo_description` |
+
+---
+
+# Recommended Taxonomies
+
+| Taxonomy           | Slug                     |
+| ------------------ | ------------------------ |
+| Project Categories | `hpcms_project_category` |
+| Technologies       | `hpcms_technology`       |
+| Industries         | `hpcms_industry`         |
+
+---
+
+# 2. Experience
+
+## CPT Slug
+
+```txt id="up4qow"
+hpcms_experience
+```
+
+---
+
+# Purpose
+
+Stores:
+
+* job history
+* agency work
+* freelance experience
+* internships
+
+---
+
+# Recommended Meta Fields
+
+| Field            | Meta Key                  |
+| ---------------- | ------------------------- |
+| Company Name     | `_hpcms_company_name`     |
+| Position         | `_hpcms_position`         |
+| Employment Type  | `_hpcms_employment_type`  |
+| Start Date       | `_hpcms_start_date`       |
+| End Date         | `_hpcms_end_date`         |
+| Current Position | `_hpcms_current_position` |
+| Company Website  | `_hpcms_company_url`      |
+| Location         | `_hpcms_location`         |
+
+---
+
+# 3. Education
+
+## CPT Slug
+
+```txt id="u3ev3e"
+hpcms_education
+```
+
+---
+
+# Purpose
+
+Stores:
+
+* academic history
+* certifications
+* training programs
+* courses
+
+---
+
+# Recommended Meta Fields
+
+| Field           | Meta Key                 |
+| --------------- | ------------------------ |
+| Institution     | `_hpcms_institution`     |
+| Degree          | `_hpcms_degree`          |
+| Field of Study  | `_hpcms_field_of_study`  |
+| Start Date      | `_hpcms_start_date`      |
+| End Date        | `_hpcms_end_date`        |
+| Grade           | `_hpcms_grade`           |
+| Certificate URL | `_hpcms_certificate_url` |
+
+---
+
+# 4. Resume
+
+## CPT Slug
+
+```txt id="fwj0h3"
+hpcms_resume
+```
+
+---
+
+# Purpose
+
+Stores:
+
+* downloadable resumes
+* CV versions
+* tailored resume files
+
+---
+
+# Recommended Meta Fields
+
+| Field          | Meta Key                |
+| -------------- | ----------------------- |
+| Resume File    | `_hpcms_resume_file`    |
+| Resume Version | `_hpcms_resume_version` |
+| Resume Type    | `_hpcms_resume_type`    |
+| Last Updated   | `_hpcms_last_updated`   |
+
+---
+
+# Recommended Resume Types
+
+* Developer Resume
+* Marketing Resume
+* Agency Resume
+* Designer Resume
+
+---
+
+# 5. Skills
+
+## CPT Slug
+
+```txt id="fwpbjg"
+hpcms_skill
+```
+
+---
+
+# Why CPT Instead of Taxonomy?
+
+Because skills often need:
+
+* icons
+* proficiency levels
+* categories
+* years of experience
+* ordering
+* relationships
+
+A CPT gives more flexibility.
+
+---
+
+# Recommended Meta Fields
+
+| Field            | Meta Key                  |
+| ---------------- | ------------------------- |
+| Skill Level      | `_hpcms_skill_level`      |
+| Skill Icon       | `_hpcms_skill_icon`       |
+| Experience Years | `_hpcms_experience_years` |
+| Official URL     | `_hpcms_skill_url`        |
+
+---
+
+# Recommended Taxonomy
+
+| Taxonomy         | Slug                   |
+| ---------------- | ---------------------- |
+| Skill Categories | `hpcms_skill_category` |
+
+Examples:
+
+* Frontend
+* Backend
+* SEO
+* Marketing
+* Design
+
+---
+
+# 6. Testimonials
+
+## CPT Slug
+
+```txt id="8e7whq"
+hpcms_testimonial
+```
+
+---
+
+# Purpose
+
+Stores:
+
+* client reviews
+* recommendations
+* endorsements
+
+---
+
+# Recommended Meta Fields
+
+| Field           | Meta Key                 |
+| --------------- | ------------------------ |
+| Client Name     | `_hpcms_client_name`     |
+| Client Position | `_hpcms_client_position` |
+| Company         | `_hpcms_company`         |
+| Company Website | `_hpcms_company_url`     |
+| Rating          | `_hpcms_rating`          |
+| Client Image    | `_hpcms_client_image`    |
+
+---
+
+# Global CMS Settings
+
+Instead of storing personal information randomly, create a centralized settings system.
+
+---
+
+# Settings Group
+
+## Profile Information
+
+| Field     | Meta Key           |
+| --------- | ------------------ |
+| Full Name | `_hpcms_full_name` |
+| Tagline   | `_hpcms_tagline`   |
+| Bio       | `_hpcms_bio`       |
+| Email     | `_hpcms_email`     |
+| Phone     | `_hpcms_phone`     |
+| Location  | `_hpcms_location`  |
+
+---
+
+# Social Links
+
+| Field     | Meta Key          |
+| --------- | ----------------- |
+| GitHub    | `_hpcms_github`   |
+| LinkedIn  | `_hpcms_linkedin` |
+| X/Twitter | `_hpcms_twitter`  |
+| YouTube   | `_hpcms_youtube`  |
+| Behance   | `_hpcms_behance`  |
+
+---
+
+# SEO Settings
+
+| Field                    | Meta Key                  |
+| ------------------------ | ------------------------- |
+| Default Meta Title       | `_hpcms_meta_title`       |
+| Default Meta Description | `_hpcms_meta_description` |
+| Default OG Image         | `_hpcms_og_image`         |
+
+---
+
+# REST API Architecture
+
+This is the most important part of the plugin.
+
+---
+
+# Namespace
+
+```txt id="e0t7sw"
+hpcms/v1
+```
+
+---
+
+# Core API Endpoints
+
+---
+
+# Projects
+
+```txt id="jlwmj8"
+/wp-json/hpcms/v1/projects
+/wp-json/hpcms/v1/projects/{slug}
+```
+
+---
+
+# Experience
+
+```txt id="qj7m5m"
+/wp-json/hpcms/v1/experience
+/wp-json/hpcms/v1/experience/{slug}
+```
+
+---
+
+# Education
+
+```txt id="8xv0eh"
+/wp-json/hpcms/v1/education
+/wp-json/hpcms/v1/education/{slug}
+```
+
+---
+
+# Resume
+
+```txt id="kof1ut"
+/wp-json/hpcms/v1/resume
+```
+
+---
+
+# Skills
+
+```txt id="6yqu4m"
+/wp-json/hpcms/v1/skills
+/wp-json/hpcms/v1/skills/{slug}
+```
+
+---
+
+# Testimonials
+
+```txt id="khjprw"
+/wp-json/hpcms/v1/testimonials
+```
+
+---
+
+# Profile
+
+```txt id="r53rba"
+/wp-json/hpcms/v1/profile
+```
+
+---
+
+# Recommended API Response Structure
+
+Example:
+
+```json id="lq4q5x"
+{
+  "id": 1,
+  "title": "AFX Audio",
+  "slug": "afx-audio",
+  "excerpt": "",
+  "content": "",
+  "featuredImage": {},
+  "technologies": [],
+  "seo": {},
+  "links": {
+    "live": "",
+    "github": ""
+  }
+}
+```
+
+---
+
+# Security Requirements
+
+Critical for WordPress.org approval.
+
+---
+
+# Sanitize Inputs
+
+```php id="07d2t0"
+sanitize_text_field()
+sanitize_email()
+esc_url_raw()
+absint()
+```
+
+---
+
+# Escape Outputs
+
+```php id="c14dlz"
+esc_html()
+esc_attr()
+esc_url()
+wp_kses_post()
+```
+
+---
+
+# Nonces
+
+```php id="r8ph1f"
+wp_verify_nonce()
+```
+
+---
+
+# Permission Checks
+
+```php id="j8lg9h"
+current_user_can()
+```
+
+---
+
+# NEVER Use
+
+```php id="v2p2vh"
+'permission_callback' => '__return_true'
+```
+
+for sensitive endpoints.
+
+---
+
+# API Features
+
+---
+
+# Required Features
+
+## Pagination
+
+```txt id="x1h3su"
+/projects?page=1&per_page=10
+```
+
+---
+
+## Filtering
+
+```txt id="ffjlwm"
+/projects?technology=react
+```
+
+---
+
+## Sorting
+
+```txt id="ib8m0v"
+/projects?sort=latest
+```
+
+---
+
+# Performance Optimization
+
+Implement:
+
+* lazy loading
+* image optimization
+* lightweight queries
+* selective field responses
+
+---
+
+# Recommended Admin UX
+
+---
+
+# Dashboard Sections
+
+* Projects
+* Experience
+* Education
+* Resume
+* Skills
+* Testimonials
+* Settings
+* API Settings
+
+---
+
+# API Settings
+
+| Setting            | Purpose          |
+| ------------------ | ---------------- |
+| Enable REST API    | Toggle APIs      |
+| Enable CORS        | Headless support |
+| Allowed Origins    | Security         |
+| API Cache Duration | Performance      |
+
+---
+
+# CORS Configuration
+
+Should support:
+
+* configurable origins
+* frontend framework integration
+* secure domain whitelisting
+
+---
+
+# Build System
+
+---
+
+# Recommended Stack
+
+| Area       | Technology            |
+| ---------- | --------------------- |
+| PHP        | PHP 8.1+              |
+| JS         | React                 |
+| Build Tool | Vite                  |
+| CSS        | Tailwind (admin only) |
+| API        | WordPress REST API    |
+
+---
+
+# IMPORTANT
+
+Compiled assets MUST be included in production builds.
+
+Users should NEVER run:
+
+```bash id="m2k9sk"
+npm install
+npm run build
+```
+
+after plugin installation.
+
+---
+
+# WordPress.org Requirements
+
+---
+
+# Must Have
+
+* sanitized inputs
+* escaped outputs
+* proper permissions
+* no fatal errors
+* no debug logs
+* no hardcoded secrets
+* GPL-compatible assets
+* proper uninstall cleanup
+
+---
+
+# Recommended Positioning
+
+> “Use WordPress as your portfolio backend and connect it to any modern frontend framework.”
+
+---
+
+# Target Audience
+
+* Developers
+* Agencies
+* Freelancers
+* JAMstack users
+* Headless WordPress users
+* Personal branding professionals
+
+---
+
+# Recommended SEO Keywords
+
+* headless portfolio CMS
+* WordPress portfolio API
+* API-first portfolio plugin
+* portfolio CMS for Next.js
+* headless developer portfolio
+* JAMstack portfolio backend
+
+---
+
+# Long-Term Product Vision
+
+Your plugin is no longer just a portfolio plugin.
+
+It is evolving into:
+
+> A structured headless content platform for developer and professional portfolios powered by WordPress.
