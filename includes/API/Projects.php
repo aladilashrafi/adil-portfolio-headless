@@ -123,6 +123,11 @@ class Projects {
             $gallery = is_array( $decoded ) ? array_map( 'esc_url', $decoded ) : [];
         }
 
+        $results_raw = get_post_meta( $post->ID, '_hpcms_key_results', true );
+        $results     = $results_raw 
+            ? array_values( array_filter( array_map( 'trim', explode( "\n", $results_raw ) ) ) )
+            : [];
+
         return [
             'id'            => $post->ID,
             'title'         => esc_html( $post->post_title ),
@@ -138,6 +143,7 @@ class Projects {
             'completionDate'=> esc_html( get_post_meta( $post->ID, '_hpcms_completion_date', true ) ),
             'featured'      => (bool) get_post_meta( $post->ID, '_hpcms_featured', true ),
             'techStack'     => $tech_tags,
+            'keyResults'    => $results,
             'gallery'       => $gallery,
             'seo'           => [
                 'title'       => esc_html( get_post_meta( $post->ID, '_hpcms_seo_title', true ) ?: $post->post_title ),

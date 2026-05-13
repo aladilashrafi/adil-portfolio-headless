@@ -9,11 +9,19 @@ class Registry {
     }
 
     public static function register_all(): void {
-        if ( get_option( 'hpcms_enable_api', '1' ) !== '1' ) {
-            return;
-        }
+        register_rest_route( 'hpcms/v1', '/test', [
+            'methods'  => 'GET',
+            'callback' => function() { return ['status' => 'ok']; },
+            'permission_callback' => '__return_true',
+        ] );
 
         self::init_content_filters();
+
+        register_rest_route( 'hpcms/v1', '/ping', [
+            'methods'  => 'GET',
+            'callback' => function() { return ['pong' => true, 'time' => time()]; },
+            'permission_callback' => '__return_true',
+        ] );
 
         $ns = HPCMS_API_NS;
 
@@ -24,6 +32,9 @@ class Registry {
         Skills::register_routes( $ns );
         Testimonials::register_routes( $ns );
         Profile::register_routes( $ns );
+        Services::register_routes( $ns );
+        Contact::register_routes( $ns );
+        Clients::register_routes( $ns );
     }
 
     private static function init_content_filters(): void {

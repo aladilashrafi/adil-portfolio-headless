@@ -17,6 +17,7 @@ class Registry {
         Resume::register();
         Skills::register();
         Testimonials::register();
+        Services::register();
     }
 
     public static function add_all_meta_boxes(): void {
@@ -26,6 +27,7 @@ class Registry {
         add_meta_box( 'hpcms_resume_meta',      'Resume Details',      [ Resume::class, 'render_box' ],       'hpcms_resume',      'normal', 'high' );
         add_meta_box( 'hpcms_skill_meta',       'Skill Details',       [ Skills::class, 'render_box' ],       'hpcms_skill',       'normal', 'high' );
         add_meta_box( 'hpcms_testimonial_meta', 'Testimonial Details', [ Testimonials::class, 'render_box' ], 'hpcms_testimonial', 'normal', 'high' );
+        add_meta_box( 'hpcms_service_meta',     'Service Details',     [ Services::class, 'render_box' ],     'hpcms_service',     'normal', 'high' );
     }
 
     public static function save_all_meta( int $post_id ): void {
@@ -57,7 +59,7 @@ class Registry {
             '_hpcms_institution', '_hpcms_degree', '_hpcms_field_of_study',
             '_hpcms_grade', '_hpcms_resume_version', '_hpcms_resume_type',
             '_hpcms_last_updated', '_hpcms_skill_level', '_hpcms_skill_icon',
-            '_hpcms_client_position', '_hpcms_company',
+            '_hpcms_client_position', '_hpcms_company', '_hpcms_company_name', '_hpcms_service_num',
         ];
         foreach ( $text_fields as $key ) {
             if ( isset( $_POST[ $key ] ) ) {
@@ -65,14 +67,38 @@ class Registry {
             }
         }
 
-        $textarea_fields = [ '_hpcms_seo_description', '_hpcms_gallery' ];
+        $html_fields = [ '_hpcms_service_icon' ];
+        foreach ( $html_fields as $key ) {
+            if ( isset( $_POST[ $key ] ) ) {
+                $allowed = wp_kses_allowed_html( 'post' );
+                $allowed['svg'] = [
+                    'xmlns'   => true,
+                    'viewbox' => true,
+                    'fill'    => true,
+                    'width'   => true,
+                    'height'  => true,
+                    'class'   => true,
+                ];
+                $allowed['path'] = [
+                    'd'    => true,
+                    'fill' => true,
+                    'stroke' => true,
+                ];
+                $allowed['circle'] = [ 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true ];
+                $allowed['rect']   = [ 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'fill' => true ];
+                
+                update_post_meta( $post_id, $key, wp_kses( wp_unslash( $_POST[ $key ] ), $allowed ) );
+            }
+        }
+
+        $textarea_fields = [ '_hpcms_seo_description', '_hpcms_gallery', '_hpcms_key_results' ];
         foreach ( $textarea_fields as $key ) {
             if ( isset( $_POST[ $key ] ) ) {
                 update_post_meta( $post_id, $key, sanitize_textarea_field( wp_unslash( $_POST[ $key ] ) ) );
             }
         }
 
-        $int_fields = [ '_hpcms_experience_years', '_hpcms_rating' ];
+        $int_fields = [ '_hpcms_experience_years', '_hpcms_skill_percentage', '_hpcms_rating' ];
         foreach ( $int_fields as $key ) {
             if ( isset( $_POST[ $key ] ) ) {
                 update_post_meta( $post_id, $key, absint( $_POST[ $key ] ) );

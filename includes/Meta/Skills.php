@@ -8,6 +8,7 @@ class Skills {
         $fields = [
             '_hpcms_skill_level'      => 'string',
             '_hpcms_skill_icon'       => 'string',
+            '_hpcms_skill_percentage' => 'integer',
             '_hpcms_experience_years' => 'integer',
             '_hpcms_skill_url'        => 'string',
         ];
@@ -26,6 +27,7 @@ class Skills {
         wp_nonce_field( 'hpcms_save_meta', 'hpcms_nonce' );
         $fields = [
             '_hpcms_skill_level'      => [ 'label' => 'Skill Level',         'type' => 'select', 'options' => [ '' => '— Select —', 'beginner' => 'Beginner', 'intermediate' => 'Intermediate', 'advanced' => 'Advanced', 'expert' => 'Expert' ] ],
+            '_hpcms_skill_percentage' => [ 'label' => 'Proficiency (%)',   'type' => 'number', 'placeholder' => '95' ],
             '_hpcms_skill_icon'       => [ 'label' => 'Icon (URL or SVG)',   'type' => 'text',   'placeholder' => 'https://... or a unicode symbol' ],
             '_hpcms_experience_years' => [ 'label' => 'Years of Experience', 'type' => 'number', 'placeholder' => '3' ],
             '_hpcms_skill_url'        => [ 'label' => 'Official URL',        'type' => 'url',    'placeholder' => 'https://reactjs.org' ],

@@ -15,5 +15,8 @@ class Registry {
         Resume::register();
         Skills::register();
         Testimonials::register();
+        Services::register();
+        ContactLog::register();
+        Clients::register();
     }
 }

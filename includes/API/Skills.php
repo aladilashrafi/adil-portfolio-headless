@@ -66,6 +66,7 @@ class Skills {
             'title'           => esc_html( $post->post_title ),
             'slug'            => $post->post_name,
             'level'           => esc_html( get_post_meta( $post->ID, '_hpcms_skill_level', true ) ),
+            'percentage'      => (int) get_post_meta( $post->ID, '_hpcms_skill_percentage', true ),
             'icon'            => esc_url( get_post_meta( $post->ID, '_hpcms_skill_icon', true ) ),
             'experienceYears' => (int) get_post_meta( $post->ID, '_hpcms_experience_years', true ),
             'officialUrl'     => esc_url( get_post_meta( $post->ID, '_hpcms_skill_url', true ) ),

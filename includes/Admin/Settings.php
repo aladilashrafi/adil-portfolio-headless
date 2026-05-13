@@ -28,7 +28,7 @@ class Settings {
 
             <form method="post" action="options.php" class="hpcms-settings-form">
                 <?php
-                settings_fields( 'hpcms_settings_group' );
+                settings_fields( 'hpcms_settings_' . $active_tab );
 
                 if ( $active_tab === 'profile' ) {
                     self::render_profile_tab();
@@ -52,6 +52,7 @@ class Settings {
         <table class="form-table">
             <tr><th scope="row">Full Name</th><td><input type="text" name="hpcms_full_name" value="<?php echo esc_attr( get_option( 'hpcms_full_name' ) ); ?>" class="regular-text"></td></tr>
             <tr><th scope="row">Tagline</th><td><input type="text" name="hpcms_tagline" value="<?php echo esc_attr( get_option( 'hpcms_tagline' ) ); ?>" class="regular-text"></td></tr>
+            <tr><th scope="row">Hero Description</th><td><textarea name="hpcms_hero_bio" class="large-text" rows="3"><?php echo esc_textarea( get_option( 'hpcms_hero_bio' ) ); ?></textarea></td></tr>
             <tr><th scope="row">Bio</th><td><textarea name="hpcms_bio" class="large-text" rows="5"><?php echo esc_textarea( get_option( 'hpcms_bio' ) ); ?></textarea></td></tr>
             <tr><th scope="row">Email</th><td><input type="email" name="hpcms_email" value="<?php echo esc_attr( get_option( 'hpcms_email' ) ); ?>" class="regular-text"></td></tr>
             <tr><th scope="row">Phone</th><td><input type="text" name="hpcms_phone" value="<?php echo esc_attr( get_option( 'hpcms_phone' ) ); ?>" class="regular-text"></td></tr>

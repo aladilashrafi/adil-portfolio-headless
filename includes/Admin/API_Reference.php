@@ -66,6 +66,21 @@ class API_Reference {
                                 <td><code>/profile</code></td>
                                 <td>None</td>
                             </tr>
+                            <tr>
+                                <td><strong>Services</strong></td>
+                                <td><code>/services</code></td>
+                                <td>None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Clients</strong></td>
+                                <td><code>/clients</code></td>
+                                <td>None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Contact</strong></td>
+                                <td><code>/contact</code> (POST)</td>
+                                <td><code>name</code>, <code>email</code>, <code>subject</code>, <code>message</code>, <code>budget</code></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

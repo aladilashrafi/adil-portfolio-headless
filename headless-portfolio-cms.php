@@ -49,6 +49,7 @@ function hpcms_bootstrap(): void {
     HPCMS\Core\CORS::init();
     HPCMS\API\Registry::init();
     HPCMS\Admin\Menu::init();
+    HPCMS\Core\Revalidator::init();
 }
 add_action( 'plugins_loaded', 'hpcms_bootstrap' );
 
