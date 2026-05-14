@@ -1,6 +1,6 @@
 === Headless Portfolio CMS ===
 Contributors: aladilashrafi
-Tags: headless, portfolio, nextjs, api, cms, rest-api
+Tags: headless, portfolio, nextjs, cms, rest-api
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 8.1

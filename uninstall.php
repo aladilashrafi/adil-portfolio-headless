@@ -6,10 +6,17 @@
 
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
+// Only delete data if the user selected to delete everything in the deactivation popup
+$hpcms_should_delete = get_option( 'hpcms_delete_data_on_uninstall', '0' );
+
+if ( '1' !== $hpcms_should_delete ) {
+    return;
+}
+
 // ── Delete all plugin options ──────────────────────────────────────────────────
 $hpcms_options = [
     // Profile
-    'hpcms_full_name', 'hpcms_tagline', 'hpcms_bio', 'hpcms_email',
+    'hpcms_full_name', 'hpcms_tagline', 'hpcms_hero_bio', 'hpcms_bio', 'hpcms_email',
     'hpcms_phone', 'hpcms_location', 'hpcms_avatar_url',
     // Social
     'hpcms_github', 'hpcms_linkedin', 'hpcms_twitter',
@@ -19,6 +26,8 @@ $hpcms_options = [
     // API & CORS
     'hpcms_enable_api', 'hpcms_enable_cors', 'hpcms_allowed_origins',
     'hpcms_cache_duration', 'hpcms_api_token', 'hpcms_frontend_url',
+    'hpcms_revalidate_token', 'hpcms_contact_email',
+    'hpcms_delete_data_on_uninstall',
 ];
 
 foreach ( $hpcms_options as $hpcms_opt ) {

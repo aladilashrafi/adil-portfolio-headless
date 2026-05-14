@@ -1,0 +1,15 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="fav-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366F1" />
+            <stop offset="100%" stop-color="#06B6D4" />
+        </linearGradient>
+    </defs>
+    <!-- Adding a bit more padding for WordPress admin menu alignment -->
+    <g transform="translate(1, 1)">
+        <rect x="3" y="3" width="2.5" height="12" rx="1.25" fill="url(#fav-gradient)" />
+        <rect x="12.5" y="3" width="2.5" height="12" rx="1.25" fill="url(#fav-gradient)" />
+        <rect x="5.5" y="8" width="7" height="2" rx="1" fill="url(#fav-gradient)" />
+        <circle cx="9" cy="9" r="1.5" fill="#FFFFFF" />
+    </g>
+</svg>
