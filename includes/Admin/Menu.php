@@ -17,13 +17,12 @@ class Menu {
             'headless-portfolio-cms',
             [ Dashboard::class, 'render' ],
             'dashicons-rest-api',
-            25
+            100
         );
 
         add_submenu_page( 'headless-portfolio-cms', __( 'Dashboard', 'headless-portfolio-cms' ),    __( 'Dashboard', 'headless-portfolio-cms' ),    'manage_options', 'headless-portfolio-cms',      [ Dashboard::class, 'render' ] );
         add_submenu_page( 'headless-portfolio-cms', __( 'Settings', 'headless-portfolio-cms' ),     __( 'Settings', 'headless-portfolio-cms' ),     'manage_options', 'hpcms-settings',              [ Settings::class, 'render' ] );
         add_submenu_page( 'headless-portfolio-cms', __( 'API Reference', 'headless-portfolio-cms' ),__( 'API Reference', 'headless-portfolio-cms' ),'manage_options', 'hpcms-api-reference',         [ API_Reference::class, 'render' ] );
-        add_submenu_page( 'headless-portfolio-cms', __( 'Documentation', 'headless-portfolio-cms' ),__( 'Documentation', 'headless-portfolio-cms' ),'manage_options', 'hpcms-documentation',         [ Documentation::class, 'render' ] );
     }
 
     public static function enqueue_assets( $hook ): void {

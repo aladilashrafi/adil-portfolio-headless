@@ -1,6 +1,6 @@
 === Headless Portfolio CMS ===
 Contributors: aladilashrafi
-Tags: headless, portfolio, nextjs, api, cms
+Tags: headless, portfolio, nextjs, api, cms, rest-api
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 8.1
@@ -23,13 +23,15 @@ Stop hardcoding your resume and project data! With Headless Portfolio CMS, you c
 *   **Built-in CORS Management:** Easily configure Cross-Origin Resource Sharing (CORS) directly from the dashboard to allow your frontend applications to securely fetch data.
 *   **Global Profile & SEO Settings:** Manage your bio, social links, and default SEO metadata centrally.
 *   **Dynamic Taxonomies:** Organize your projects by **Technologies**, **Categories**, and **Industries**. Group your skills by **Skill Categories**.
-*   **API Reference Dashboard:** Includes a beautifully designed, built-in API reference guide right in your WordPress admin area.
+*   **API Reference Dashboard:** Includes a beautifully designed, built-in API reference guide right in your WordPress admin area to help you integrate quickly.
 *   **Lightning Fast & Lightweight:** Zero bloat, no frontend assets loaded, and highly optimized database queries for instant API responses.
 
 ### 💻 Built for Modern Frontends
+
 Whether you are building a static site with Astro, a server-rendered app with Next.js, or a single-page application with React or Vue, this plugin provides the perfect data structure. The JSON responses are deeply nested and cleanly formatted, removing the need for complex data parsing on your frontend.
 
 ### 🔒 Secure by Default
+
 All endpoints are strictly read-only for public access. Your private data and administrative settings are fully protected by WordPress's native nonces and capability checks.
 
 == Installation ==
@@ -38,27 +40,30 @@ All endpoints are strictly read-only for public access. Your private data and ad
 2. Go to **Plugins > Add New** in your WordPress admin dashboard.
 3. Click **Upload Plugin** and select the downloaded zip file.
 4. Click **Install Now** and then **Activate**.
-5. Navigate to the new **Portfolio CMS** menu item in your sidebar to configure your profile, CORS settings, and start adding your portfolio content!
+5. Navigate to the **Portfolio CMS** menu item in your sidebar to configure your profile and start adding content!
 
 == Frequently Asked Questions ==
 
 = Do I need a specific WordPress theme to use this? =
-No! Because this is a headless CMS plugin, it is completely theme-agnostic. Your WordPress installation merely acts as the database and API provider. You build the actual visual website using a separate frontend framework like Next.js or React.
+No! This is a headless CMS plugin, making it completely theme-agnostic. Your WordPress installation merely acts as the database and API provider.
 
 = How do I connect my frontend application? =
-Simply go to **Portfolio CMS > Settings > API & CORS**, add your frontend's URL to the Allowed Origins list, and start making `GET` requests to `your-wordpress-site.com/wp-json/hpcms/v1/...`.
-
-= Can I use this for an agency portfolio? =
-Absolutely. The structure is flexible enough to handle solo developer portfolios as well as multi-project agency showcases.
+Simply go to **Portfolio CMS > Settings > API & CORS**, add your frontend's URL to the Allowed Origins list, and start making `GET` requests to the endpoints shown in the Dashboard or API Reference.
 
 = Are the API endpoints cached? =
-The plugin provides a configuration setting for API Cache Duration, which you can use in conjunction with your frontend caching strategies (like Next.js Incremental Static Regeneration - ISR) or server-level caching.
+The plugin provides a configuration setting for API Cache Duration, which you can use in conjunction with your frontend caching strategies (like Next.js ISR).
 
 == Changelog ==
 
 = 1.0.0 =
 * Initial public release!
-* Complete modular architecture implemented.
-* Added 6 core content entities with custom meta fields.
-* Integrated CORS and API token management.
-* Built-in API documentation added.
+* Implemented modular PSR-4 architecture.
+* Added core content entities (Projects, Experience, Skills, etc.) with custom meta fields.
+* Integrated CORS and API security management.
+* Built-in API Reference Dashboard.
+* Optimized admin menu placement for better UX.
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+This is the first stable release. Please install and configure your API settings to begin.
