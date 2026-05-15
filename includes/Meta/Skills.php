@@ -13,11 +13,18 @@ class Skills {
             '_hpcms_skill_url'        => 'string',
         ];
         foreach ( $fields as $key => $type ) {
+            $sanitize = 'sanitize_text_field';
+            if ( $type === 'integer' ) {
+                $sanitize = 'absint';
+            } elseif ( $key === '_hpcms_skill_icon' ) {
+                $sanitize = null; // Registry.php will handle sanitization on save
+            }
+
             register_post_meta( 'hpcms_skill', $key, [
                 'type'              => $type,
                 'single'            => true,
                 'show_in_rest'      => true,
-                'sanitize_callback' => $type === 'integer' ? 'absint' : 'sanitize_text_field',
+                'sanitize_callback' => $sanitize,
                 'default'           => $type === 'integer' ? 0 : '',
             ] );
         }

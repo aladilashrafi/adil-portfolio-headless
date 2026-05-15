@@ -1,5 +1,5 @@
 === Headless Portfolio CMS ===
-Contributors: aladilashrafi
+Contributors: aladilashrafi, anytv
 Tags: headless, portfolio, nextjs, cms, rest-api
 Requires at least: 6.5
 Tested up to: 6.9

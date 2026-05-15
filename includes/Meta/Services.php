@@ -11,9 +11,10 @@ class Services {
             'type'         => 'string',
         ] );
         register_meta( 'post', '_hpcms_service_icon', [
-            'show_in_rest' => true,
-            'single'       => true,
-            'type'         => 'string',
+            'show_in_rest'      => true,
+            'single'            => true,
+            'type'              => 'string',
+            'sanitize_callback' => null,
         ] );
     }
 

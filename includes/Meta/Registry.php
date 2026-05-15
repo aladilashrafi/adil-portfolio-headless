@@ -58,7 +58,7 @@ class Registry {
             '_hpcms_start_date', '_hpcms_end_date', '_hpcms_location',
             '_hpcms_institution', '_hpcms_degree', '_hpcms_field_of_study',
             '_hpcms_grade', '_hpcms_resume_version', '_hpcms_resume_type',
-            '_hpcms_last_updated', '_hpcms_skill_level', '_hpcms_skill_icon',
+            '_hpcms_last_updated', '_hpcms_skill_level',
             '_hpcms_client_position', '_hpcms_company', '_hpcms_company_name', '_hpcms_service_num',
         ];
         foreach ( $text_fields as $key ) {
@@ -67,25 +67,36 @@ class Registry {
             }
         }
 
-        $html_fields = [ '_hpcms_service_icon' ];
+        $html_fields = [ '_hpcms_service_icon', '_hpcms_skill_icon' ];
         foreach ( $html_fields as $key ) {
             if ( isset( $_POST[ $key ] ) ) {
                 $allowed = wp_kses_allowed_html( 'post' );
                 $allowed['svg'] = [
-                    'xmlns'   => true,
-                    'viewbox' => true,
-                    'fill'    => true,
-                    'width'   => true,
-                    'height'  => true,
-                    'class'   => true,
+                    'xmlns'       => true,
+                    'viewbox'     => true,
+                    'fill'        => true,
+                    'width'       => true,
+                    'height'      => true,
+                    'class'       => true,
+                    'stroke'      => true,
+                    'stroke-width' => true,
+                    'stroke-linecap' => true,
+                    'stroke-linejoin' => true,
                 ];
                 $allowed['path'] = [
-                    'd'    => true,
-                    'fill' => true,
+                    'd'      => true,
+                    'fill'   => true,
                     'stroke' => true,
+                    'stroke-width' => true,
+                    'stroke-linecap' => true,
+                    'stroke-linejoin' => true,
                 ];
-                $allowed['circle'] = [ 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true ];
-                $allowed['rect']   = [ 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'fill' => true ];
+                $allowed['circle'] = [ 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
+                $allowed['rect']   = [ 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
+                $allowed['line']   = [ 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'stroke' => true, 'stroke-width' => true ];
+                $allowed['polyline'] = [ 'points' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
+                $allowed['polygon'] = [ 'points' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
+                $allowed['ellipse'] = [ 'cx' => true, 'cy' => true, 'rx' => true, 'ry' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
                 
                 update_post_meta( $post_id, $key, wp_kses( wp_unslash( $_POST[ $key ] ), $allowed ) );
             }
