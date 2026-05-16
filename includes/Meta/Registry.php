@@ -78,6 +78,7 @@ class Registry {
                     'width'       => true,
                     'height'      => true,
                     'class'       => true,
+                    'style'       => true,
                     'stroke'      => true,
                     'stroke-width' => true,
                     'stroke-linecap' => true,
@@ -90,13 +91,23 @@ class Registry {
                     'stroke-width' => true,
                     'stroke-linecap' => true,
                     'stroke-linejoin' => true,
+                    'class'  => true,
+                    'style'  => true,
                 ];
-                $allowed['circle'] = [ 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
-                $allowed['rect']   = [ 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
-                $allowed['line']   = [ 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'stroke' => true, 'stroke-width' => true ];
-                $allowed['polyline'] = [ 'points' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
-                $allowed['polygon'] = [ 'points' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
-                $allowed['ellipse'] = [ 'cx' => true, 'cy' => true, 'rx' => true, 'ry' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true ];
+                $allowed['circle']   = [ 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'class' => true, 'style' => true ];
+                $allowed['rect']     = [ 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'class' => true, 'style' => true ];
+                $allowed['line']     = [ 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'stroke' => true, 'stroke-width' => true, 'class' => true, 'style' => true ];
+                $allowed['polyline'] = [ 'points' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'class' => true, 'style' => true ];
+                $allowed['polygon']  = [ 'points' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'class' => true, 'style' => true ];
+                $allowed['ellipse']  = [ 'cx' => true, 'cy' => true, 'rx' => true, 'ry' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'class' => true, 'style' => true ];
+                $allowed['g']        = [ 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'class' => true, 'style' => true, 'transform' => true ];
+                $allowed['defs']     = [];
+                $allowed['lineargradient'] = [ 'id' => true, 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'gradientunits' => true ];
+                $allowed['stop']     = [ 'offset' => true, 'stop-color' => true, 'stop-opacity' => true ];
+                $allowed['mask']     = [ 'id' => true, 'maskunits' => true ];
+                $allowed['use']      = [ 'href' => true, 'xlink:href' => true, 'x' => true, 'y' => true ];
+                $allowed['text']     = [ 'x' => true, 'y' => true, 'fill' => true, 'font-size' => true, 'font-family' => true, 'text-anchor' => true, 'class' => true, 'style' => true ];
+                $allowed['tspan']    = [ 'x' => true, 'y' => true, 'fill' => true, 'class' => true, 'style' => true ];
                 
                 update_post_meta( $post_id, $key, wp_kses( wp_unslash( $_POST[ $key ] ), $allowed ) );
             }

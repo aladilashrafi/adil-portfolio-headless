@@ -113,7 +113,7 @@ class Projects {
     private static function shape( \WP_Post $post ): array {
         $tech_raw  = get_post_meta( $post->ID, '_hpcms_tech_stack', true );
         $tech_tags = $tech_raw
-            ? array_values( array_filter( array_map( 'trim', explode( ',', $tech_raw ) ) ) )
+            ? array_values( array_filter( array_map( function($v) { return html_entity_decode(trim($v)); }, explode( ',', $tech_raw ) ) ) )
             : [];
 
         $gallery_raw = get_post_meta( $post->ID, '_hpcms_gallery', true );
@@ -125,29 +125,29 @@ class Projects {
 
         $results_raw = get_post_meta( $post->ID, '_hpcms_key_results', true );
         $results     = $results_raw 
-            ? array_values( array_filter( array_map( 'trim', explode( "\n", $results_raw ) ) ) )
+            ? array_values( array_filter( array_map( function($v) { return html_entity_decode(trim($v)); }, explode( "\n", $results_raw ) ) ) )
             : [];
 
         return [
             'id'            => $post->ID,
-            'title'         => esc_html( $post->post_title ),
+            'title'         => html_entity_decode( $post->post_title ),
             'slug'          => $post->post_name,
-            'excerpt'       => esc_html( get_the_excerpt( $post ) ),
+            'excerpt'       => html_entity_decode( get_the_excerpt( $post ) ),
             'content'       => wp_kses_post( apply_filters( 'hpcms_content', $post->post_content ) ),
             'featuredImage' => Helper::get_featured_image( $post->ID ),
-            'client'        => esc_html( get_post_meta( $post->ID, '_hpcms_client_name', true ) ),
+            'client'        => html_entity_decode( get_post_meta( $post->ID, '_hpcms_client_name', true ) ),
             'links'         => [
                 'live'   => esc_url( get_post_meta( $post->ID, '_hpcms_project_url', true ) ),
                 'github' => esc_url( get_post_meta( $post->ID, '_hpcms_github_url', true ) ),
             ],
-            'completionDate'=> esc_html( get_post_meta( $post->ID, '_hpcms_completion_date', true ) ),
+            'completionDate'=> html_entity_decode( get_post_meta( $post->ID, '_hpcms_completion_date', true ) ),
             'featured'      => (bool) get_post_meta( $post->ID, '_hpcms_featured', true ),
             'techStack'     => $tech_tags,
             'keyResults'    => $results,
             'gallery'       => $gallery,
             'seo'           => [
-                'title'       => esc_html( get_post_meta( $post->ID, '_hpcms_seo_title', true ) ?: $post->post_title ),
-                'description' => esc_html( get_post_meta( $post->ID, '_hpcms_seo_description', true ) ),
+                'title'       => html_entity_decode( get_post_meta( $post->ID, '_hpcms_seo_title', true ) ?: $post->post_title ),
+                'description' => html_entity_decode( get_post_meta( $post->ID, '_hpcms_seo_description', true ) ),
             ],
             'technologies'  => Helper::get_terms_for( $post->ID, 'hpcms_technology' ),
             'categories'    => Helper::get_terms_for( $post->ID, 'hpcms_project_category' ),

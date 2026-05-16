@@ -51,16 +51,16 @@ class Experience {
     private static function shape( \WP_Post $post ): array {
         return [
             'id'              => $post->ID,
-            'title'           => esc_html( $post->post_title ),
+            'title'           => html_entity_decode( $post->post_title ),
             'slug'            => $post->post_name,
-            'role'            => esc_html( get_post_meta( $post->ID, '_hpcms_position', true ) ?: $post->post_title ),
-            'company'         => esc_html( get_post_meta( $post->ID, '_hpcms_company_name', true ) ),
+            'role'            => html_entity_decode( get_post_meta( $post->ID, '_hpcms_position', true ) ?: $post->post_title ),
+            'company'         => html_entity_decode( get_post_meta( $post->ID, '_hpcms_company_name', true ) ),
             'companyUrl'      => esc_url( get_post_meta( $post->ID, '_hpcms_company_url', true ) ),
-            'employmentType'  => esc_html( get_post_meta( $post->ID, '_hpcms_employment_type', true ) ),
-            'startDate'       => esc_html( get_post_meta( $post->ID, '_hpcms_start_date', true ) ),
-            'endDate'         => esc_html( get_post_meta( $post->ID, '_hpcms_end_date', true ) ),
+            'employmentType'  => html_entity_decode( get_post_meta( $post->ID, '_hpcms_employment_type', true ) ),
+            'startDate'       => html_entity_decode( get_post_meta( $post->ID, '_hpcms_start_date', true ) ),
+            'endDate'         => html_entity_decode( get_post_meta( $post->ID, '_hpcms_end_date', true ) ),
             'isCurrent'       => (bool) get_post_meta( $post->ID, '_hpcms_current_position', true ),
-            'location'        => esc_html( get_post_meta( $post->ID, '_hpcms_location', true ) ),
+            'location'        => html_entity_decode( get_post_meta( $post->ID, '_hpcms_location', true ) ),
             'description'     => wp_kses_post( apply_filters( 'hpcms_content', $post->post_content ) ),
             'order'           => (int) $post->menu_order,
         ];

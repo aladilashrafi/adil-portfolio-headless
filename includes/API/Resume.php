@@ -26,12 +26,12 @@ class Resume {
     private static function shape( \WP_Post $post ): array {
         return [
             'id'          => $post->ID,
-            'title'       => esc_html( $post->post_title ),
+            'title'       => html_entity_decode( $post->post_title ),
             'slug'        => $post->post_name,
             'fileUrl'     => esc_url( get_post_meta( $post->ID, '_hpcms_resume_file', true ) ),
-            'version'     => esc_html( get_post_meta( $post->ID, '_hpcms_resume_version', true ) ),
-            'type'        => esc_html( get_post_meta( $post->ID, '_hpcms_resume_type', true ) ),
-            'lastUpdated' => esc_html( get_post_meta( $post->ID, '_hpcms_last_updated', true ) ),
+            'version'     => html_entity_decode( get_post_meta( $post->ID, '_hpcms_resume_version', true ) ),
+            'type'        => html_entity_decode( get_post_meta( $post->ID, '_hpcms_resume_type', true ) ),
+            'lastUpdated' => html_entity_decode( get_post_meta( $post->ID, '_hpcms_last_updated', true ) ),
             'order'       => (int) $post->menu_order,
         ];
     }

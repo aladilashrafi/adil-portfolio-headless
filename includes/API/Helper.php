@@ -26,7 +26,7 @@ class Helper {
         return array_map( static function ( \WP_Term $term ): array {
             return [
                 'id'   => $term->term_id,
-                'name' => esc_html( $term->name ),
+                'name' => html_entity_decode( $term->name ),
                 'slug' => $term->slug,
             ];
         }, $terms );

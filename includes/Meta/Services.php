@@ -29,8 +29,8 @@ class Services {
                 <td><input type="text" name="_hpcms_service_num" id="_hpcms_service_num" value="<?php echo esc_attr( $num ); ?>" class="regular-text"></td>
             </tr>
             <tr>
-                <th><label for="_hpcms_service_icon">Service Icon (Unicode/SVG)</label></th>
-                <td><input type="text" name="_hpcms_service_icon" id="_hpcms_service_icon" value="<?php echo esc_attr( $icon ); ?>" class="regular-text"></td>
+                <th><label for="_hpcms_service_icon">Service Icon (Lucide/SVG/URL)</label></th>
+                <td><textarea name="_hpcms_service_icon" id="_hpcms_service_icon" class="large-text" rows="4" placeholder="Enter Lucide icon name (e.g. Rocket), raw SVG code, or Image URL"><?php echo esc_textarea( $icon ); ?></textarea></td>
             </tr>
         </table>
         <?php

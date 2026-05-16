@@ -12,7 +12,7 @@ class Skills {
             'args'                => [
                 'category' => [ 'type' => 'string', 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ],
                 'page'     => [ 'type' => 'integer', 'default' => 1, 'sanitize_callback' => 'absint' ],
-                'per_page' => [ 'type' => 'integer', 'default' => -1, 'sanitize_callback' => 'absint' ],
+                'per_page' => [ 'type' => 'integer', 'default' => 100 ],
             ],
         ] );
 
@@ -63,11 +63,11 @@ class Skills {
     private static function shape( \WP_Post $post ): array {
         return [
             'id'              => $post->ID,
-            'title'           => esc_html( $post->post_title ),
+            'title'           => html_entity_decode( $post->post_title ),
             'slug'            => $post->post_name,
-            'level'           => esc_html( get_post_meta( $post->ID, '_hpcms_skill_level', true ) ),
+            'level'           => html_entity_decode( get_post_meta( $post->ID, '_hpcms_skill_level', true ) ),
             'percentage'      => (int) get_post_meta( $post->ID, '_hpcms_skill_percentage', true ),
-            'icon'            => esc_url( get_post_meta( $post->ID, '_hpcms_skill_icon', true ) ),
+            'icon'            => get_post_meta( $post->ID, '_hpcms_skill_icon', true ),
             'experienceYears' => (int) get_post_meta( $post->ID, '_hpcms_experience_years', true ),
             'officialUrl'     => esc_url( get_post_meta( $post->ID, '_hpcms_skill_url', true ) ),
             'categories'      => Helper::get_terms_for( $post->ID, 'hpcms_skill_category' ),

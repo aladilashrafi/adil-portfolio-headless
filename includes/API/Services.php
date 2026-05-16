@@ -27,9 +27,9 @@ class Services {
         return [
             'id'          => $post->ID,
             'slug'        => $post->post_name,
-            'num'         => esc_html( get_post_meta( $post->ID, '_hpcms_service_num', true ) ),
+            'num'         => html_entity_decode( get_post_meta( $post->ID, '_hpcms_service_num', true ) ),
             'icon'        => get_post_meta( $post->ID, '_hpcms_service_icon', true ),
-            'name'        => esc_html( $post->post_title ),
+            'name'        => html_entity_decode( $post->post_title ),
             'description' => wp_kses_post( get_the_excerpt( $post ) ),
             'content'     => wp_kses_post( apply_filters( 'hpcms_content', $post->post_content ) ),
             'order'       => (int) $post->menu_order,

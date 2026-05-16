@@ -26,7 +26,7 @@ class Clients {
     private static function shape( \WP_Post $post ): array {
         return [
             'id'    => $post->ID,
-            'name'  => esc_html( $post->post_title ),
+            'name'  => html_entity_decode( $post->post_title ),
             'logo'  => get_the_post_thumbnail_url( $post->ID, 'full' ) ?: '',
             'order' => (int) $post->menu_order,
         ];

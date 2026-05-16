@@ -44,6 +44,6 @@ class Projects {
         Helper::render_fields( $post, $fields );
 
         $featured = get_post_meta( $post->ID, '_hpcms_featured', true );
-        echo '<p><label><input type="checkbox" name="_hpcms_featured" value="1"' . checked( $featured, true, false ) . '> Featured project</label></p>';
+        echo '<p><label><input type="checkbox" name="_hpcms_featured" value="1"' . checked( $featured, true, false ) . '> Production Status </label></p>';
     }
 }

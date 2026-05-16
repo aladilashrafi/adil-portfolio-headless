@@ -45,13 +45,13 @@ class Settings {
 
     public static function get_profile(): array {
         return [
-            'name'             => esc_html( get_option( 'hpcms_full_name', '' ) ),
-            'tagline'          => esc_html( get_option( 'hpcms_tagline', '' ) ),
+            'name'             => html_entity_decode( get_option( 'hpcms_full_name', '' ) ),
+            'tagline'          => html_entity_decode( get_option( 'hpcms_tagline', '' ) ),
             'hero_bio'         => wp_kses_post( get_option( 'hpcms_hero_bio', '' ) ),
             'bio'              => wp_kses_post( get_option( 'hpcms_bio', '' ) ),
             'email'            => sanitize_email( get_option( 'hpcms_email', '' ) ),
-            'phone'            => esc_html( get_option( 'hpcms_phone', '' ) ),
-            'location'         => esc_html( get_option( 'hpcms_location', '' ) ),
+            'phone'            => html_entity_decode( get_option( 'hpcms_phone', '' ) ),
+            'location'         => html_entity_decode( get_option( 'hpcms_location', '' ) ),
             'avatar'           => esc_url( get_option( 'hpcms_avatar_url', '' ) ),
             'social'           => [
                 'github'   => esc_url( get_option( 'hpcms_github', '' ) ),
@@ -62,8 +62,8 @@ class Settings {
                 'dribbble' => esc_url( get_option( 'hpcms_dribbble', '' ) ),
             ],
             'seo'              => [
-                'title'       => esc_html( get_option( 'hpcms_meta_title', '' ) ),
-                'description' => esc_html( get_option( 'hpcms_meta_description', '' ) ),
+                'title'       => html_entity_decode( get_option( 'hpcms_meta_title', '' ) ),
+                'description' => html_entity_decode( get_option( 'hpcms_meta_description', '' ) ),
                 'ogImage'     => esc_url( get_option( 'hpcms_og_image', '' ) ),
             ],
         ];
